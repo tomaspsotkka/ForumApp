@@ -1,30 +1,11 @@
 {
   "version": 3,
   "targets": {
-    "net8.0": {
-      "Entities/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v8.0",
-        "compile": {
-          "bin/placeholder/Entities.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Entities.dll": {}
-        }
-      }
-    }
+    "net8.0": {}
   },
-  "libraries": {
-    "Entities/1.0.0": {
-      "type": "project",
-      "path": "../Entities/Entities.csproj",
-      "msbuildProject": "../Entities/Entities.csproj"
-    }
-  },
+  "libraries": {},
   "projectFileDependencyGroups": {
-    "net8.0": [
-      "Entities >= 1.0.0"
-    ]
+    "net8.0": []
   },
   "packageFolders": {
     "C:\\Users\\psotk\\.nuget\\packages\\": {}
@@ -32,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\psotk\\RiderProjects\\Solution1\\Server\\RepositoryContracts\\RepositoryContracts.csproj",
-      "projectName": "RepositoryContracts",
-      "projectPath": "C:\\Users\\psotk\\RiderProjects\\Solution1\\Server\\RepositoryContracts\\RepositoryContracts.csproj",
+      "projectUniqueName": "C:\\Users\\psotk\\RiderProjects\\Solution1\\Server\\InMemoryRepositories\\InMemoryRepositories.csproj",
+      "projectName": "InMemoryRepositories",
+      "projectPath": "C:\\Users\\psotk\\RiderProjects\\Solution1\\Server\\InMemoryRepositories\\InMemoryRepositories.csproj",
       "packagesPath": "C:\\Users\\psotk\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\psotk\\RiderProjects\\Solution1\\Server\\RepositoryContracts\\obj\\",
+      "outputPath": "C:\\Users\\psotk\\RiderProjects\\Solution1\\Server\\InMemoryRepositories\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\psotk\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -50,11 +31,7 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "projectReferences": {
-            "C:\\Users\\psotk\\RiderProjects\\Solution1\\Server\\Entities\\Entities.csproj": {
-              "projectPath": "C:\\Users\\psotk\\RiderProjects\\Solution1\\Server\\Entities\\Entities.csproj"
-            }
-          }
+          "projectReferences": {}
         }
       },
       "warningProperties": {
