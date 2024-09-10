@@ -6,8 +6,9 @@ public class Comment
     public string Body { get; set; }
     public int PostId { get; set; }
 
-    public Comment()
+    public Comment(string body, int postId)
     {
-        
+        Body = body;
+        PostId = postId;
     }
 }
