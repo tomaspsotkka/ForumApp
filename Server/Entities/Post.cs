@@ -7,10 +7,10 @@ public class Post
     public string Body { get; set; }
     public int UserId { get; }
 
-    public Post(string title, string body, int userId)
+    public Post(string title, string body/*, int userId*/)
     {
         Title = title;
         Body = body;
-        UserId = userId;
+        /*UserId = userId;*/
     }
 }
