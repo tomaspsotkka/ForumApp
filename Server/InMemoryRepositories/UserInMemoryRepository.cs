@@ -5,7 +5,7 @@ namespace InMemoryRepositories;
 
 public class UserInMemoryRepository : IUserRepository
 {
-    public List<User> users;
+    public List<User> users = new List<User>();
 
     public Task<User> AddAsync(User user)
     {

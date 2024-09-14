@@ -20,6 +20,8 @@ public class CreatePostView
         Console.WriteLine("Enter the description of the post:");
         string? description = Console.ReadLine();
 
+        Console.Clear();
+        
         var newPost = new Post(title,description);
         await postRepository.AddAsync(newPost);
         

@@ -1,3 +1,4 @@
+using Entities;
 using RepositoryContracts;
 
 namespace CLI.UI.ManagePosts;
@@ -13,8 +14,21 @@ public class ListPostsView
 
     public async Task ShowAsync()
     {
-        var users = postRepository.GetMany();
-        /*users.Any()*/
+        var posts = postRepository.GetMany().ToList();
         
+        if (!posts.Any())
+        {
+            Console.WriteLine("No posts available.");
+            return;
+        }
+
+        Console.Clear();
+        Console.WriteLine("List of Posts:");
+        foreach (var post in posts)
+        {
+            Console.WriteLine($"ID: {post.Id}");
+            Console.WriteLine($"Title: {post.Title}");
+            Console.WriteLine($"Content: {post.Body} \n");
+        }
     }
 }
