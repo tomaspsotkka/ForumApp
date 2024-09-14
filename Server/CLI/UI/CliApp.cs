@@ -19,10 +19,13 @@ public class CliApp
         while (true)
         {
             Console.WriteLine("Select an option: ");
+            Console.WriteLine("POST OPTIONS");
             Console.WriteLine("1. Create post");
             Console.WriteLine("2. List of posts");
-            Console.WriteLine("3. Create user");
-            Console.WriteLine("4. List of users");
+            Console.WriteLine("3. Get specific post \n");
+            Console.WriteLine("USER OPTIONS");
+            Console.WriteLine("4. Create user");
+            Console.WriteLine("5. List of users \n");
             Console.WriteLine("0. Exit");
             Console.WriteLine("Enter option: ");
             string? input = Console.ReadLine();
@@ -39,9 +42,13 @@ public class CliApp
                     break;
                 case "3":
                     Console.Clear();
-                    await CreateUserAsync();
+                    await SinglePostAsync();
                     break;
                 case "4":
+                    Console.Clear();
+                    await CreateUserAsync();
+                    break;
+                case "5":
                     Console.Clear();
                     await ListUsersAsync();
                     break;
@@ -78,5 +85,11 @@ public class CliApp
     {
         var listUsersView = new ListUsersView(userRepository);
         await listUsersView.ShowAsync();
+    }
+    
+    private async Task SinglePostAsync()
+    {
+        var singlePostView = new SinglePostView(postRepository);
+        await singlePostView.ShowAsync();
     }
 }
