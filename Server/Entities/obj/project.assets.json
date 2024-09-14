@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\psotk\\RiderProjects\\Solution1\\Server\\Entities\\Entities.csproj",
+      "projectUniqueName": "C:\\Users\\psotk\\RiderProjects\\ForumApp\\Server\\Entities\\Entities.csproj",
       "projectName": "Entities",
-      "projectPath": "C:\\Users\\psotk\\RiderProjects\\Solution1\\Server\\Entities\\Entities.csproj",
+      "projectPath": "C:\\Users\\psotk\\RiderProjects\\ForumApp\\Server\\Entities\\Entities.csproj",
       "packagesPath": "C:\\Users\\psotk\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\psotk\\RiderProjects\\Solution1\\Server\\Entities\\obj\\",
+      "outputPath": "C:\\Users\\psotk\\RiderProjects\\ForumApp\\Server\\Entities\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\psotk\\AppData\\Roaming\\NuGet\\NuGet.Config"

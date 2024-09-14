@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\psotk\\RiderProjects\\Solution1\\Server\\CLI\\CLI.csproj": {}
+    "C:\\Users\\psotk\\RiderProjects\\ForumApp\\Server\\CLI\\CLI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\psotk\\RiderProjects\\Solution1\\Server\\CLI\\CLI.csproj": {
+    "C:\\Users\\psotk\\RiderProjects\\ForumApp\\Server\\CLI\\CLI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\psotk\\RiderProjects\\Solution1\\Server\\CLI\\CLI.csproj",
+        "projectUniqueName": "C:\\Users\\psotk\\RiderProjects\\ForumApp\\Server\\CLI\\CLI.csproj",
         "projectName": "CLI",
-        "projectPath": "C:\\Users\\psotk\\RiderProjects\\Solution1\\Server\\CLI\\CLI.csproj",
+        "projectPath": "C:\\Users\\psotk\\RiderProjects\\ForumApp\\Server\\CLI\\CLI.csproj",
         "packagesPath": "C:\\Users\\psotk\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\psotk\\RiderProjects\\Solution1\\Server\\CLI\\obj\\",
+        "outputPath": "C:\\Users\\psotk\\RiderProjects\\ForumApp\\Server\\CLI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\psotk\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -26,14 +26,14 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\psotk\\RiderProjects\\Solution1\\Server\\Entities\\Entities.csproj": {
-                "projectPath": "C:\\Users\\psotk\\RiderProjects\\Solution1\\Server\\Entities\\Entities.csproj"
+              "C:\\Users\\psotk\\RiderProjects\\ForumApp\\Server\\Entities\\Entities.csproj": {
+                "projectPath": "C:\\Users\\psotk\\RiderProjects\\ForumApp\\Server\\Entities\\Entities.csproj"
               },
-              "C:\\Users\\psotk\\RiderProjects\\Solution1\\Server\\InMemoryRepositories\\InMemoryRepositories.csproj": {
-                "projectPath": "C:\\Users\\psotk\\RiderProjects\\Solution1\\Server\\InMemoryRepositories\\InMemoryRepositories.csproj"
+              "C:\\Users\\psotk\\RiderProjects\\ForumApp\\Server\\InMemoryRepositories\\InMemoryRepositories.csproj": {
+                "projectPath": "C:\\Users\\psotk\\RiderProjects\\ForumApp\\Server\\InMemoryRepositories\\InMemoryRepositories.csproj"
               },
-              "C:\\Users\\psotk\\RiderProjects\\Solution1\\Server\\RepositoryContracts\\RepositoryContracts.csproj": {
-                "projectPath": "C:\\Users\\psotk\\RiderProjects\\Solution1\\Server\\RepositoryContracts\\RepositoryContracts.csproj"
+              "C:\\Users\\psotk\\RiderProjects\\ForumApp\\Server\\RepositoryContracts\\RepositoryContracts.csproj": {
+                "projectPath": "C:\\Users\\psotk\\RiderProjects\\ForumApp\\Server\\RepositoryContracts\\RepositoryContracts.csproj"
               }
             }
           }
@@ -72,14 +72,14 @@
         }
       }
     },
-    "C:\\Users\\psotk\\RiderProjects\\Solution1\\Server\\Entities\\Entities.csproj": {
+    "C:\\Users\\psotk\\RiderProjects\\ForumApp\\Server\\Entities\\Entities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\psotk\\RiderProjects\\Solution1\\Server\\Entities\\Entities.csproj",
+        "projectUniqueName": "C:\\Users\\psotk\\RiderProjects\\ForumApp\\Server\\Entities\\Entities.csproj",
         "projectName": "Entities",
-        "projectPath": "C:\\Users\\psotk\\RiderProjects\\Solution1\\Server\\Entities\\Entities.csproj",
+        "projectPath": "C:\\Users\\psotk\\RiderProjects\\ForumApp\\Server\\Entities\\Entities.csproj",
         "packagesPath": "C:\\Users\\psotk\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\psotk\\RiderProjects\\Solution1\\Server\\Entities\\obj\\",
+        "outputPath": "C:\\Users\\psotk\\RiderProjects\\ForumApp\\Server\\Entities\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\psotk\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -130,14 +130,14 @@
         }
       }
     },
-    "C:\\Users\\psotk\\RiderProjects\\Solution1\\Server\\InMemoryRepositories\\InMemoryRepositories.csproj": {
+    "C:\\Users\\psotk\\RiderProjects\\ForumApp\\Server\\InMemoryRepositories\\InMemoryRepositories.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\psotk\\RiderProjects\\Solution1\\Server\\InMemoryRepositories\\InMemoryRepositories.csproj",
+        "projectUniqueName": "C:\\Users\\psotk\\RiderProjects\\ForumApp\\Server\\InMemoryRepositories\\InMemoryRepositories.csproj",
         "projectName": "InMemoryRepositories",
-        "projectPath": "C:\\Users\\psotk\\RiderProjects\\Solution1\\Server\\InMemoryRepositories\\InMemoryRepositories.csproj",
+        "projectPath": "C:\\Users\\psotk\\RiderProjects\\ForumApp\\Server\\InMemoryRepositories\\InMemoryRepositories.csproj",
         "packagesPath": "C:\\Users\\psotk\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\psotk\\RiderProjects\\Solution1\\Server\\InMemoryRepositories\\obj\\",
+        "outputPath": "C:\\Users\\psotk\\RiderProjects\\ForumApp\\Server\\InMemoryRepositories\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\psotk\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -152,11 +152,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\psotk\\RiderProjects\\Solution1\\Server\\Entities\\Entities.csproj": {
-                "projectPath": "C:\\Users\\psotk\\RiderProjects\\Solution1\\Server\\Entities\\Entities.csproj"
+              "C:\\Users\\psotk\\RiderProjects\\ForumApp\\Server\\Entities\\Entities.csproj": {
+                "projectPath": "C:\\Users\\psotk\\RiderProjects\\ForumApp\\Server\\Entities\\Entities.csproj"
               },
-              "C:\\Users\\psotk\\RiderProjects\\Solution1\\Server\\RepositoryContracts\\RepositoryContracts.csproj": {
-                "projectPath": "C:\\Users\\psotk\\RiderProjects\\Solution1\\Server\\RepositoryContracts\\RepositoryContracts.csproj"
+              "C:\\Users\\psotk\\RiderProjects\\ForumApp\\Server\\RepositoryContracts\\RepositoryContracts.csproj": {
+                "projectPath": "C:\\Users\\psotk\\RiderProjects\\ForumApp\\Server\\RepositoryContracts\\RepositoryContracts.csproj"
               }
             }
           }
@@ -195,14 +195,14 @@
         }
       }
     },
-    "C:\\Users\\psotk\\RiderProjects\\Solution1\\Server\\RepositoryContracts\\RepositoryContracts.csproj": {
+    "C:\\Users\\psotk\\RiderProjects\\ForumApp\\Server\\RepositoryContracts\\RepositoryContracts.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\psotk\\RiderProjects\\Solution1\\Server\\RepositoryContracts\\RepositoryContracts.csproj",
+        "projectUniqueName": "C:\\Users\\psotk\\RiderProjects\\ForumApp\\Server\\RepositoryContracts\\RepositoryContracts.csproj",
         "projectName": "RepositoryContracts",
-        "projectPath": "C:\\Users\\psotk\\RiderProjects\\Solution1\\Server\\RepositoryContracts\\RepositoryContracts.csproj",
+        "projectPath": "C:\\Users\\psotk\\RiderProjects\\ForumApp\\Server\\RepositoryContracts\\RepositoryContracts.csproj",
         "packagesPath": "C:\\Users\\psotk\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\psotk\\RiderProjects\\Solution1\\Server\\RepositoryContracts\\obj\\",
+        "outputPath": "C:\\Users\\psotk\\RiderProjects\\ForumApp\\Server\\RepositoryContracts\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\psotk\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -217,8 +217,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\psotk\\RiderProjects\\Solution1\\Server\\Entities\\Entities.csproj": {
-                "projectPath": "C:\\Users\\psotk\\RiderProjects\\Solution1\\Server\\Entities\\Entities.csproj"
+              "C:\\Users\\psotk\\RiderProjects\\ForumApp\\Server\\Entities\\Entities.csproj": {
+                "projectPath": "C:\\Users\\psotk\\RiderProjects\\ForumApp\\Server\\Entities\\Entities.csproj"
               }
             }
           }
