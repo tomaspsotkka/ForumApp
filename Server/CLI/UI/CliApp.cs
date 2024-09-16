@@ -8,24 +8,20 @@ public class CliApp
 {
     public readonly IPostRepository postRepository;
     public readonly IUserRepository userRepository;
+    public readonly ICommentRepository commentRepository;
 
-    public CliApp(IPostRepository postRepository, IUserRepository userRepository)
+    public CliApp(IPostRepository postRepository, IUserRepository userRepository, ICommentRepository commentRepository)
     {
         this.postRepository = postRepository;
         this.userRepository = userRepository;
+        this.commentRepository = commentRepository;
     }
     public async Task StartAsync()
     {
         while (true)
         {
-            Console.WriteLine("Select an option: ");
-            Console.WriteLine("POST OPTIONS");
-            Console.WriteLine("1. Create post");
-            Console.WriteLine("2. List of posts");
-            Console.WriteLine("3. Get specific post \n");
-            Console.WriteLine("USER OPTIONS");
-            Console.WriteLine("4. Create user");
-            Console.WriteLine("5. List of users \n");
+            Console.WriteLine("1. Manage Posts");
+            Console.WriteLine("2. Manage Users");
             Console.WriteLine("0. Exit");
             Console.WriteLine("Enter option: ");
             string? input = Console.ReadLine();
@@ -34,23 +30,11 @@ public class CliApp
             {
                 case "1":
                     Console.Clear();
-                    await CreatePostAsync();
+                    await ManagePostsAsync();
                     break;
                 case "2":
                     Console.Clear();
-                    await ListPostsAsync();
-                    break;
-                case "3":
-                    Console.Clear();
-                    await SinglePostAsync();
-                    break;
-                case "4":
-                    Console.Clear();
-                    await CreateUserAsync();
-                    break;
-                case "5":
-                    Console.Clear();
-                    await ListUsersAsync();
+                    await ManageUsersAsync();
                     break;
                 case "0":
                     Console.Clear();
@@ -63,33 +47,14 @@ public class CliApp
             }
         }
     }
-    private async Task CreatePostAsync()
+    private async Task ManagePostsAsync()
     {
-        var createPostView = new CreatePostView(postRepository);
-        await createPostView.ShowAsync();
+        var managePostsView = new ManagePostsView(postRepository, userRepository, commentRepository);
+        await managePostsView.ShowAsync();
     }
-
-    private async Task ListPostsAsync()
+    private async Task ManageUsersAsync()
     {
-        var listPostsView = new ListPostsView(postRepository);
-        await listPostsView.ShowAsync();
-    }
-    
-    private async Task CreateUserAsync()
-    {
-        var createUserView = new CreateUserView(userRepository);
-        await createUserView.ShowAsync();
-    }
-    
-    private async Task ListUsersAsync()
-    {
-        var listUsersView = new ListUsersView(userRepository);
-        await listUsersView.ShowAsync();
-    }
-    
-    private async Task SinglePostAsync()
-    {
-        var singlePostView = new SinglePostView(postRepository);
-        await singlePostView.ShowAsync();
+        var manageUsersView = new ManageUsersView(userRepository, postRepository, commentRepository);
+        await manageUsersView.ShowAsync();
     }
 }

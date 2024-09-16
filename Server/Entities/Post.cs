@@ -6,6 +6,7 @@ public class Post
     public string Title { get; set; }
     public string Body { get; set; }
     public int UserId { get; }
+    public int CommentId { get; }
 
     public Post(string title, string body)
     {

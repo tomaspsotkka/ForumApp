@@ -21,7 +21,6 @@ public class CreateUserView
         string? password = Console.ReadLine();
 
         Console.Clear();
-        
         var newUser = new User(username, password);
         await userRepository.AddAsync(newUser);
         

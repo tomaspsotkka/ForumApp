@@ -6,10 +6,13 @@ namespace CLI.UI.ManagePosts;
 public class CreatePostView
 {
     private readonly IPostRepository postRepository;
+    private readonly ICommentRepository commentRepository;
+    private List<Comment> comments;
 
     public CreatePostView(IPostRepository postRepository)
     {
         this.postRepository = postRepository;
+        comments = new List<Comment>();
     }
 
     public async Task ShowAsync()

@@ -7,10 +7,11 @@ public class Comment
     public int PostId { get; }
     public int UserId { get; }
 
-    public Comment(string body, int postId, int userId)
+    public Comment(int userId, string body, int postId)
     {
+        UserId = userId;
         Body = body;
         PostId = postId;
-        UserId = userId;
     }
+    public Comment(){}
 }

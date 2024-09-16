@@ -5,13 +5,13 @@ namespace InMemoryRepositories;
 
 public class CommentInMemoryRepository : ICommentRepository
 {
-    public List<Comment> comments;
-
+    private List<Comment> comments;
     public Task<Comment> AddAsync(Comment comment)
     {
         comment.Id = comments.Any()
             ? comments.Max(u => u.Id) + 1
             : 1;
+        
         comments.Add(comment);
         return Task.FromResult(comment);
     }
