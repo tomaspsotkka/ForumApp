@@ -6,6 +6,14 @@ namespace InMemoryRepositories;
 public class PostInMemoryRepository : IPostRepository
 {
     public List<Post> posts = new List<Post>();
+
+    public PostInMemoryRepository()
+    {
+        posts.Add(new Post("Post nnnnnj", "njjjjj", 1));
+        posts.Add(new Post("Dog", "nice dog", 2));
+        posts.Add(new Post("How to write", "idk search on google", 3));
+        posts.Add(new Post("C# assignment", "done don't worry", 4));
+    }
     
     public Task<Post> AddAsync(Post post)
     {
