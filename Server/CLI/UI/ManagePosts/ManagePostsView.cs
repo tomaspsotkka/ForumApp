@@ -12,6 +12,7 @@ public class ManagePostsView
     {
         this.postRepository = postRepository;
         this.userRepository = userRepository;
+        this.commentRepository = commentRepository;
     }
 
     public async Task ShowAsync()

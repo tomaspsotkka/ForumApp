@@ -10,11 +10,12 @@ public class CreateCommentView
     public readonly IUserRepository userRepository;
     public readonly int postId;
 
-    public CreateCommentView(ICommentRepository commentRepository, IPostRepository postRepository, IUserRepository userRepository, int postId)
+    public CreateCommentView(ICommentRepository commentRepository, int postId)
     {
         this.commentRepository = commentRepository;
-        this.postRepository = postRepository;
+        /*this.postRepository = postRepository;
         this.userRepository = userRepository;
+        */
         this.postId = postId;
     }
 
@@ -28,14 +29,14 @@ public class CreateCommentView
         }
         
         Console.WriteLine("Enter your comment:");
-        string? comment = Console.ReadLine();
+        string? content = Console.ReadLine();
         
-        if (string.IsNullOrEmpty(comment))
+        if (string.IsNullOrEmpty(content))
         {
             Console.WriteLine("Comment cannot be empty.");
             return;
         }
-        Comment newComment = new Comment(userId, comment, postId);
+        var newComment = new Comment(userId, content, postId);
         await commentRepository.AddAsync(newComment);
         Console.WriteLine("Comment added successfully.");
     }

@@ -25,7 +25,7 @@ public class SinglePostView
         Console.Clear();
         var post = await postRepository.GetSingleAsync(id);
         Console.WriteLine($"{post.Id}. Title: {post.Title} \n" +
-                          $"2Content: {post.Body} \n");
+                          $"Content: {post.Body} \n");
 
         while (true)
         {
@@ -53,7 +53,7 @@ public class SinglePostView
 
     private async Task AddCommentAsync(int postId)
     {
-        var addCommentView = new CreateCommentView(commentRepository, postRepository, userRepository, postId);
+        var addCommentView = new CreateCommentView(commentRepository, postId);
         await addCommentView.ShowAsync();
     }
     
