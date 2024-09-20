@@ -44,3 +44,5 @@ C:\Users\psotk\RiderProjects\ForumApp\Server\CLI\obj\Debug\net8.0\refint\CLI.dll
 C:\Users\psotk\RiderProjects\ForumApp\Server\CLI\obj\Debug\net8.0\CLI.pdb
 C:\Users\psotk\RiderProjects\ForumApp\Server\CLI\obj\Debug\net8.0\CLI.genruntimeconfig.cache
 C:\Users\psotk\RiderProjects\ForumApp\Server\CLI\obj\Debug\net8.0\ref\CLI.dll
+C:\Users\psotk\RiderProjects\ForumApp\Server\CLI\bin\Debug\net8.0\FileRepositories.dll
+C:\Users\psotk\RiderProjects\ForumApp\Server\CLI\bin\Debug\net8.0\FileRepositories.pdb

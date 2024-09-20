@@ -75,7 +75,7 @@ public class ManagePostsView
     
     private async Task SinglePostAsync()
     {
-        var singlePostView = new SinglePostView(postRepository, commentRepository);
+        var singlePostView = new SinglePostView(postRepository, commentRepository, userRepository);
         await singlePostView.ShowAsync();
     }
 

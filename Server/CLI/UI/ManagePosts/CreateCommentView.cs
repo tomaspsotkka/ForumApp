@@ -10,12 +10,11 @@ public class CreateCommentView
     public readonly IUserRepository userRepository;
     public readonly int postId;
 
-    public CreateCommentView(ICommentRepository commentRepository, int postId)
+    public CreateCommentView(ICommentRepository commentRepository, IUserRepository userRepository, int postId)
     {
         this.commentRepository = commentRepository;
-        /*this.postRepository = postRepository;
+        /*this.postRepository = postRepository;*/
         this.userRepository = userRepository;
-        */
         this.postId = postId;
     }
 
