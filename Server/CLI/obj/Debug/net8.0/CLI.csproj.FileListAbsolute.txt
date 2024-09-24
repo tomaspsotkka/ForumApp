@@ -27,10 +27,8 @@ C:\Users\psotk\RiderProjects\ForumApp\Server\CLI\bin\Debug\net8.0\CLI.runtimecon
 C:\Users\psotk\RiderProjects\ForumApp\Server\CLI\bin\Debug\net8.0\CLI.dll
 C:\Users\psotk\RiderProjects\ForumApp\Server\CLI\bin\Debug\net8.0\CLI.pdb
 C:\Users\psotk\RiderProjects\ForumApp\Server\CLI\bin\Debug\net8.0\Entities.dll
-C:\Users\psotk\RiderProjects\ForumApp\Server\CLI\bin\Debug\net8.0\InMemoryRepositories.dll
 C:\Users\psotk\RiderProjects\ForumApp\Server\CLI\bin\Debug\net8.0\RepositoryContracts.dll
 C:\Users\psotk\RiderProjects\ForumApp\Server\CLI\bin\Debug\net8.0\Entities.pdb
-C:\Users\psotk\RiderProjects\ForumApp\Server\CLI\bin\Debug\net8.0\InMemoryRepositories.pdb
 C:\Users\psotk\RiderProjects\ForumApp\Server\CLI\bin\Debug\net8.0\RepositoryContracts.pdb
 C:\Users\psotk\RiderProjects\ForumApp\Server\CLI\obj\Debug\net8.0\CLI.csproj.AssemblyReference.cache
 C:\Users\psotk\RiderProjects\ForumApp\Server\CLI\obj\Debug\net8.0\CLI.GeneratedMSBuildEditorConfig.editorconfig

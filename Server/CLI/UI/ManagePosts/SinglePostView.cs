@@ -68,7 +68,6 @@ public class SinglePostView
                         return;
                 }
             }
-
         }
         catch (InvalidOperationException ex)
         {
