@@ -28,5 +28,6 @@ public class ListUsersView
         {
             Console.WriteLine($"{user.Id}. Username: {user.Username}");
         }
+        Console.WriteLine("");
     }
 }

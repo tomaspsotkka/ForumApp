@@ -21,4 +21,5 @@ public class Post
         UserId = 1;
         Id = id;
     }
+    public Post(){}
 }

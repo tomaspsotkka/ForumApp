@@ -7,6 +7,7 @@ namespace FileRepositories;
 public class CommentFileRepository : ICommentRepository
 {
     private readonly string filePath = "comments.json";
+    public List<Comment> comments = new List<Comment>();
 
     public CommentFileRepository()
     {
@@ -30,17 +31,45 @@ public class CommentFileRepository : ICommentRepository
 
     public async Task UpdateAsync(Comment comment)
     {
-        
+        string commentsAsJson = await File.ReadAllTextAsync(filePath);
+        List<Comment>? comments = JsonSerializer.Deserialize<List<Comment>>(commentsAsJson);
+        Comment? existingComment = comments.SingleOrDefault(c => c.Id == comment.Id);
+        if (existingComment is null)
+        {
+            throw new InvalidOperationException(
+                $"Comment with ID {comment.Id} not found");
+        }
+        comments.Remove(existingComment);
+        comments.Add(comment);
+        commentsAsJson = JsonSerializer.Serialize(comments);
+        await File.WriteAllTextAsync(filePath, commentsAsJson);
     }
 
-    public Task DeleteAsync(int id)
+    public async Task DeleteAsync(int id)
     {
-        throw new NotImplementedException();
-    }
+        string commentsAsJson = await File.ReadAllTextAsync(filePath);
+        List<Comment>? comments = JsonSerializer.Deserialize<List<Comment>>(commentsAsJson);
+        Comment? existingComment = comments.SingleOrDefault(c => c.Id == id);
+        if (existingComment is null)
+        {
+            throw new InvalidOperationException(
+                $"Comment with ID '{id}' not found");
+        }
+        this.comments.Remove(existingComment);
+        commentsAsJson = JsonSerializer.Serialize(comments);
+        await File.WriteAllTextAsync(filePath, commentsAsJson);    }
 
-    public Task<Comment> GetSingleAsync(int id)
+    public async Task<Comment> GetSingleAsync(int id)
     {
-        throw new NotImplementedException();
+        string commentsAsJson = await File.ReadAllTextAsync(filePath);
+        List<Comment>? comments = JsonSerializer.Deserialize<List<Comment>>(commentsAsJson);
+        Comment? singleCommentGet = comments.SingleOrDefault(c => c.Id == id);
+        if (singleCommentGet is null)
+        {
+            throw new InvalidOperationException(
+                $"Comment with ID {id} not found"); 
+        }
+        return await Task.FromResult(singleCommentGet);;
     }
 
     public IQueryable<Comment> GetMany()

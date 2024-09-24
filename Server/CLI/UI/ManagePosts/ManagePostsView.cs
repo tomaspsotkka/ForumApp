@@ -59,7 +59,6 @@ public class ManagePostsView
                     break;
             }
         }
-        
     }
     private async Task CreatePostAsync()
     {

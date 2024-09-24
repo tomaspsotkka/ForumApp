@@ -17,6 +17,6 @@ public class User
         Password = password;
         Id = id;
     }
-    
-    
+
+    public User(){}
 }
