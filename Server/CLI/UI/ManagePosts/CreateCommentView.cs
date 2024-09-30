@@ -6,15 +6,11 @@ namespace CLI.UI.ManagePosts;
 public class CreateCommentView
 {
     public readonly ICommentRepository commentRepository;
-    public readonly IPostRepository postRepository;
-    public readonly IUserRepository userRepository;
     public readonly int postId;
 
-    public CreateCommentView(ICommentRepository commentRepository, IUserRepository userRepository, int postId)
+    public CreateCommentView(ICommentRepository commentRepository, int postId)
     {
         this.commentRepository = commentRepository;
-        /*this.postRepository = postRepository;*/
-        this.userRepository = userRepository;
         this.postId = postId;
     }
 

@@ -21,7 +21,6 @@ public class SingleUserView
         
         Console.Clear();
         var user = await userRepository.GetSingleAsync(id);
-        Console.WriteLine($"Post with id {id}: ");
-        Console.WriteLine($"{user.Id}. Title: {user.Username} \n");
+        Console.WriteLine($"{user.Id}. {user.Username} \n");
     }
 }

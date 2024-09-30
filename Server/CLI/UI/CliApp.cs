@@ -39,7 +39,8 @@ public class CliApp
                 case "0":
                     Console.Clear();
                     Console.WriteLine("Exiting...");
-                    return;
+                    Environment.Exit(0);
+                    break;
                 default: 
                     Console.Clear();
                     Console.WriteLine("Invalid input.");

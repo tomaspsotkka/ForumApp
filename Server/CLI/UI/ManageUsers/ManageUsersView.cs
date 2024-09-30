@@ -24,8 +24,7 @@ public class ManageUsersView
             Console.WriteLine("2. List of users");
             Console.WriteLine("3. Get specific user");
             Console.WriteLine("4. Delete user");
-            Console.WriteLine("5. Back");
-            Console.WriteLine("0. Exit");
+            Console.WriteLine("0. Back");
             string? input = Console.ReadLine();
             switch (input)
             {
@@ -45,14 +44,10 @@ public class ManageUsersView
                     Console.Clear();
                     await DeleteUserAsync();
                     break;
-                case "5":
+                case "0":
                     Console.Clear();
                     await MainMenuAsync();
                     break;
-                case "0":
-                    Console.Clear();
-                    Console.WriteLine("Exiting...");
-                    return;
                 default:
                     Console.Clear();
                     Console.WriteLine("Invalid input.");

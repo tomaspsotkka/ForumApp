@@ -23,8 +23,7 @@ public class ManagePostsView
             Console.WriteLine("2. List of posts");
             Console.WriteLine("3. Get specific post");
             Console.WriteLine("4. Delete post");
-            Console.WriteLine("5. Back");
-            Console.WriteLine("0. Exit");
+            Console.WriteLine("0. Back");
             string? input = Console.ReadLine();
 
             switch (input)
@@ -45,14 +44,10 @@ public class ManagePostsView
                     Console.Clear();
                     await DeletePostAsync();
                     break;
-                case "5":
+                case "0":
                     Console.Clear();
                     await MainMenuAsync();
                     break;
-                case "0":
-                    Console.Clear();
-                    Console.WriteLine("Exiting...");
-                    return;
                 default:
                     Console.Clear();
                     Console.WriteLine("Invalid input.");

@@ -30,7 +30,7 @@ public class SinglePostView
                 Console.WriteLine($"{post.Id}. Title: {post.Title} \n" +
                                   $"Content: {post.Body} \n");
                 
-            var comments = commentRepository.GetMany().ToList();
+            var comments = commentRepository.GetMany().Where(c => c.PostId == id).ToList();
         
             if (comments.Any())
             {
@@ -38,8 +38,9 @@ public class SinglePostView
                 foreach (var comment in comments)
                 {
                     var user = await userRepository.GetSingleAsync(comment.UserId);   
-                    Console.WriteLine($"{user.Username}: {comment.Content}");
+                    Console.WriteLine($"{comment.Id}.{user.Username}: {comment.Content}");
                 }
+                Console.WriteLine("");
             }
             else
             {
@@ -49,8 +50,10 @@ public class SinglePostView
             while (true)
             {
                 Console.WriteLine("1. Comment post");
-                Console.WriteLine("2. Back");
-                Console.WriteLine("0. Exit");
+                Console.WriteLine("2. Update post");
+                Console.WriteLine("3. Delete comment");
+                Console.WriteLine("4. Update comment");
+                Console.WriteLine("0. Back");
                 var comment = Console.ReadLine();
 
                 switch (comment)
@@ -61,11 +64,20 @@ public class SinglePostView
                         break;
                     case "2":
                         Console.Clear();
-                        await MainMenuAsync();
+                        await UpdatePostAsync(id);
+                        break;
+                    case "3":
+                        Console.Clear();
+                        await DeleteCommentAsync(id);
+                        break;
+                    case "4":
+                        Console.Clear();
+                        await UpdateCommentAsync(id);
                         break;
                     case "0":
                         Console.Clear();
-                        return;
+                        await ManagePostsAsync();
+                        break;
                 }
             }
         }
@@ -81,13 +93,28 @@ public class SinglePostView
 
     private async Task AddCommentAsync(int postId)
     {
-        var addCommentView = new CreateCommentView(commentRepository, userRepository, postId);
+        var addCommentView = new CreateCommentView(commentRepository, postId);
         await addCommentView.ShowAsync();
     }
-    
-    private async Task MainMenuAsync()
+    private async Task UpdatePostAsync(int postId)
     {
-        var mainMenu = new CliApp(postRepository, userRepository, commentRepository);
-        await mainMenu.StartAsync();
+        var updatePostView = new UpdatePostView(postRepository, postId); //Not taking in consoderation the UserId so
+                                                                             //anyone can update any post (not good)
+        await updatePostView.ShowAsync();
+    }
+    private async Task DeleteCommentAsync(int postId)
+    {
+        var deleteCommentView = new DeleteCommentView(commentRepository);
+        await deleteCommentView.ShowAsync();
+    }
+    private async Task UpdateCommentAsync(int id)
+    {
+        var updateCommentView = new UpdateCommentView(commentRepository);
+        await updateCommentView.ShowAsync();
+    }
+    private async Task ManagePostsAsync()
+    {
+        var managePostsView = new ManagePostsView(postRepository, userRepository, commentRepository);
+        await managePostsView.ShowAsync();
     }
 }
