@@ -88,6 +88,52 @@
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
         ]
+      },
+      "DTOs/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/DTOs.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DTOs.dll": {}
+        }
+      },
+      "Entities/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/Entities.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Entities.dll": {}
+        }
+      },
+      "FileRepositories/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "RepositoryContracts": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/FileRepositories.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/FileRepositories.dll": {}
+        }
+      },
+      "RepositoryContracts/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "Entities": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/RepositoryContracts.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RepositoryContracts.dll": {}
+        }
       }
     }
   },
@@ -420,10 +466,34 @@
         "swashbuckle.aspnetcore.swaggerui.6.4.0.nupkg.sha512",
         "swashbuckle.aspnetcore.swaggerui.nuspec"
       ]
+    },
+    "DTOs/1.0.0": {
+      "type": "project",
+      "path": "../../Shared/DTOs/DTOs.csproj",
+      "msbuildProject": "../../Shared/DTOs/DTOs.csproj"
+    },
+    "Entities/1.0.0": {
+      "type": "project",
+      "path": "../Entities/Entities.csproj",
+      "msbuildProject": "../Entities/Entities.csproj"
+    },
+    "FileRepositories/1.0.0": {
+      "type": "project",
+      "path": "../FileRepositories/FileRepositories.csproj",
+      "msbuildProject": "../FileRepositories/FileRepositories.csproj"
+    },
+    "RepositoryContracts/1.0.0": {
+      "type": "project",
+      "path": "../RepositoryContracts/RepositoryContracts.csproj",
+      "msbuildProject": "../RepositoryContracts/RepositoryContracts.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net8.0": [
+      "DTOs >= 1.0.0",
+      "Entities >= 1.0.0",
+      "FileRepositories >= 1.0.0",
+      "RepositoryContracts >= 1.0.0",
       "Swashbuckle.AspNetCore >= 6.4.0"
     ]
   },
@@ -451,7 +521,20 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\psotk\\RiderProjects\\ForumApp\\Server\\Entities\\Entities.csproj": {
+              "projectPath": "C:\\Users\\psotk\\RiderProjects\\ForumApp\\Server\\Entities\\Entities.csproj"
+            },
+            "C:\\Users\\psotk\\RiderProjects\\ForumApp\\Server\\FileRepositories\\FileRepositories.csproj": {
+              "projectPath": "C:\\Users\\psotk\\RiderProjects\\ForumApp\\Server\\FileRepositories\\FileRepositories.csproj"
+            },
+            "C:\\Users\\psotk\\RiderProjects\\ForumApp\\Server\\RepositoryContracts\\RepositoryContracts.csproj": {
+              "projectPath": "C:\\Users\\psotk\\RiderProjects\\ForumApp\\Server\\RepositoryContracts\\RepositoryContracts.csproj"
+            },
+            "C:\\Users\\psotk\\RiderProjects\\ForumApp\\Shared\\DTOs\\DTOs.csproj": {
+              "projectPath": "C:\\Users\\psotk\\RiderProjects\\ForumApp\\Shared\\DTOs\\DTOs.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

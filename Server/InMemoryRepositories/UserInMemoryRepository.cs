@@ -60,6 +60,17 @@ public class UserInMemoryRepository : IUserRepository
         return Task.FromResult(userToGet);
     }
 
+    public Task<User> GetSingleAsync(string username)
+    {
+        User? userToGet = users.SingleOrDefault(u => u.Username == username);
+        if (userToGet is null)
+        {
+            throw new InvalidOperationException(
+                $"User with username {username} not found");
+        }
+        return Task.FromResult(userToGet);
+    }
+    
     public IQueryable<User> GetMany()
     {
         return users.AsQueryable();

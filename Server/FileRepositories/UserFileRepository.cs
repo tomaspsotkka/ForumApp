@@ -72,6 +72,19 @@ public class UserFileRepository : IUserRepository
         return await Task.FromResult(singleUserGet);
     }
 
+    public async Task<User> GetSingleAsync(string username)
+    {
+        string usersAsJson = await File.ReadAllTextAsync(filePath);
+        List<User>? users = JsonSerializer.Deserialize<List<User>>(usersAsJson);
+        User? singleUserGet = users.SingleOrDefault(u => string.Equals(u.Username, username, StringComparison.OrdinalIgnoreCase)); //makes sure the username is not the same by ignoring the case
+        if (singleUserGet is null)
+        {
+            throw new InvalidOperationException(
+                $"User with username '{username}' not found"); 
+        }
+        return await Task.FromResult(singleUserGet);
+    }
+    
     public IQueryable<User> GetMany()
     {
         string usersAsJson = File.ReadAllTextAsync(filePath).Result;
