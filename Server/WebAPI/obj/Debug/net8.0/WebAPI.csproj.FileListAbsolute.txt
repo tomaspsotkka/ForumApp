@@ -39,3 +39,5 @@ C:\Users\psotk\RiderProjects\ForumApp\Server\WebAPI\obj\Debug\net8.0\refint\WebA
 C:\Users\psotk\RiderProjects\ForumApp\Server\WebAPI\obj\Debug\net8.0\WebAPI.pdb
 C:\Users\psotk\RiderProjects\ForumApp\Server\WebAPI\obj\Debug\net8.0\WebAPI.genruntimeconfig.cache
 C:\Users\psotk\RiderProjects\ForumApp\Server\WebAPI\obj\Debug\net8.0\ref\WebAPI.dll
+C:\Users\psotk\RiderProjects\ForumApp\Server\WebAPI\bin\Debug\net8.0\posts.json
+C:\Users\psotk\RiderProjects\ForumApp\Server\WebAPI\bin\Debug\net8.0\users.json

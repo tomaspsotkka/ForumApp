@@ -18,7 +18,7 @@ public class UsersController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<UserDto>> AddUser([FromBody] UserDto request)
+    public async Task<ActionResult<UserDto>> CreateUser([FromBody] UserDto request)
     {
         try
         {
@@ -28,9 +28,10 @@ public class UsersController : ControllerBase
             UserDto dto = new()
             {
                 Id = created.Id,
-                Username = created.Username
+                Username = created.Username,
+                Password = created.Password
             };
-            return Created($"/Users/{dto.Id}", created);
+            return Created($"/Users/{dto.Id}", dto);
         }
         catch (Exception e)
         {
@@ -40,69 +41,105 @@ public class UsersController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public async Task<IResult> UpdateUser([FromRoute] int id, [FromBody] UserDto request)
+    public async Task<ActionResult<UserDto>> UpdateUser([FromRoute] int id, [FromBody] UserDto request)
     {
         try
         {
-            User user = await userRepository.GetSingleAsync(id);
+            User? user = await userRepository.GetSingleAsync(id);
             if (user == null)
             {
-                return Results.NotFound();
+                return NotFound($"User with id {id} not found.");
             }
 
             user.Username = request.Username;
             user.Password = request.Password;
-            return Results.NoContent();
+            await userRepository.UpdateAsync(user);
+            return Ok();
         }
         catch (Exception e)
         {
             Console.WriteLine(e);
-            throw;
+            return StatusCode(500, e.Message);
         }
     }
 
-    [HttpGet("{id}")]
-    public async Task<IResult> GetSingleUser([FromRoute] int id)
+    [HttpGet("by-username/{username}")]
+    public async Task<ActionResult<UserDto>> GetSingleUser([FromRoute] string username)
     {
         try
         {
-            User user = await userRepository.GetSingleAsync(id);
-            return Results.Ok(user);
+            User? user = await userRepository.GetSingleAsync(username);
+            if (user == null)
+            {
+                return NotFound($"User with Username '{username}' not found");
+            }
+            UserDto userDto = new UserDto
+            {
+                Id = user.Id,
+                Username = user.Username,
+                Password = user.Password
+            };
+            return Ok(userDto);
         }
         catch (Exception e)
         {
             Console.WriteLine(e);
-            throw;
+            return StatusCode(500, e.Message);
         }
     }
 
-    [HttpGet]
-    public async Task<IResult> GetManyUsers()
+    [HttpGet("by-id/{id}")]
+    public async Task<ActionResult<UserDto>> GetSingleUser([FromRoute] int id)
+    {
+        try
+        {
+            User? user = await userRepository.GetSingleAsync(id);
+            if (user == null)
+            {
+                return NotFound($"User with ID '{id}' not found");
+            }
+            UserDto userDto = new UserDto
+            {
+                Id = user.Id,
+                Username = user.Username,
+                Password = user.Password
+            };
+            return Ok(userDto);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return StatusCode(500, e.Message);
+        }
+    }
+    
+    [HttpGet("all")]
+    public async Task<ActionResult<UserDto>> GetManyUsers()
     {
         try
         {
             IQueryable<User> users = userRepository.GetMany();
-            return Results.Ok(users);
+            return Ok(users);
         }
         catch (Exception e)
         {
             Console.WriteLine(e);
-            throw;
+            return StatusCode(500, e.Message);
         }
     }
 
     [HttpDelete("{id}")]
-    public async Task<IResult> DeleteUser([FromRoute] int id)
+    public async Task<ActionResult<UserDto>> DeleteUser([FromRoute] int id)
     {
         try
         {
             await userRepository.DeleteAsync(id);
-            return Results.NoContent();
+            return NoContent();
         }
         catch (Exception e)
         {
             Console.WriteLine(e);
-            throw;
+            return StatusCode(500, e.Message);
         }
     }
     

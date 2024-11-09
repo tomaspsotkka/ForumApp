@@ -7,7 +7,7 @@ namespace WebAPI.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class PostsController
+public class PostsController : ControllerBase
 {
     private readonly IPostRepository postRepository;
 
@@ -15,95 +15,96 @@ public class PostsController
     {
         this.postRepository = postRepository;
     }
+    
+    [HttpGet("test-exception")]
+    public ActionResult TestException()
+    {
+        throw new Exception("Test exception");
+    }
 
     [HttpPost]
-    public async Task<IResult> CreatePost([FromBody] PostDto request)
+    public async Task<ActionResult<PostDto>> CreatePost([FromBody] PostDto request)
     {
         try
         {
-            Post post = new Post()
-            {
-                Body = "Hahah",
-                Id = 1,
-                Title = "Some post"
-            };
+            Post post = new(request.Title, request.Body, request.UserId);
             Console.WriteLine("Post created!");
             await postRepository.AddAsync(post);
-            return Results.Created($"posts/{post.Id}", post);
+            return Created($"posts/{post.Id}", post);
         }
         catch (Exception e)
         {
             Console.WriteLine(e);
-            throw;
+            return StatusCode(500, e.Message);
         }
     }
 
     [HttpPut("{id}")]
-    public async Task<IResult> UpdatePost([FromRoute] int id, [FromBody] PostDto request)
+    public async Task<ActionResult<PostDto>> UpdatePost([FromRoute] int id, [FromBody] PostDto request)
     {
         try
         {
             Post post = await postRepository.GetSingleAsync(id);
             if (post == null)
             {
-                return Results.NotFound();
+                return NotFound();
             }
 
             post.Title = request.Title;
             post.Body = request.Body;
 
             await postRepository.UpdateAsync(post);
-            return Results.NoContent();
+            return NoContent();
         }
         catch (Exception e)
         {
             Console.WriteLine(e);
-            throw;
+            return StatusCode(500, e.Message);
         }
     }
     
     [HttpGet("{id}")]
-    public async Task<IResult> GetSinglePost([FromRoute] int id)
+    public async Task<ActionResult<PostDto>> GetSinglePost([FromRoute] int id)
     {
         try
         {
             Post post = await postRepository.GetSingleAsync(id);
-            return Results.Ok(post);
+            return Ok(post);
         }
         catch (Exception e)
         {
             Console.WriteLine(e);
-            throw;
+            return StatusCode(500, e.Message);
         }
     }
     
     [HttpGet]
-    public async Task<IResult> GetManyPosts()
+    public async Task<ActionResult<PostDto>> GetManyPosts()
     {
         try
         {
             IQueryable<Post> posts =  postRepository.GetMany();
-            return Results.Ok(posts);
+            return Ok(posts);
         }
         catch (Exception e)
         {
             Console.WriteLine(e);
-            throw;
+            return StatusCode(500, e.Message);
         }
     }
 
     [HttpDelete("{id}")]
-    public async Task<IResult> DeletePost([FromRoute] int id)
+    public async Task<ActionResult<PostDto>> DeletePost([FromRoute] int id)
     {
         try
         {
             await postRepository.DeleteAsync(id);
-            return Results.NoContent();
+            return NoContent();
         }
         catch (Exception e)
         {
             Console.WriteLine(e);
-            throw;
+            return StatusCode(500, e.Message);
         }
     }
 }

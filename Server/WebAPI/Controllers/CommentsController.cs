@@ -7,7 +7,7 @@ namespace WebAPI.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class CommentsController
+public class CommentsController : ControllerBase
 {
     private readonly ICommentRepository commentRepository;
 
@@ -17,91 +17,91 @@ public class CommentsController
     }
 
     [HttpPost]
-    public async Task<IResult> CreateComment([FromBody] CommentDto request)
+    public async Task<ActionResult<CommentDto>> CreateComment([FromBody] CommentDto request)
     {
         try
         {
             Comment comment = new Comment()
             {
-                Content = "First Comment",
-                PostId = 1,
-                UserId = 1
+                Content = request.Content,
+                PostId = request.PostId,
+                UserId = request.UserId
             };
             Console.WriteLine("Comment created!");
             await commentRepository.AddAsync(comment);
-            return Results.Created($"comments/{comment.Id}", comment);
+            return Created($"comments/{comment.Id}", comment);
         }
         catch (Exception e)
         {
             Console.WriteLine(e);
-            throw;
+            return StatusCode(500, e.Message);
         }
     }
 
     [HttpPut("{id}")]
-    public async Task<IResult> UpdateComment([FromRoute] int id, [FromBody] CommentDto request)
+    public async Task<ActionResult<CommentDto>> UpdateComment([FromRoute] int id, [FromBody] CommentDto request)
     {
         try
         {
             Comment comment = await commentRepository.GetSingleAsync(id);
             if (comment == null)
             {
-                return Results.NotFound();
+                return NotFound();
             }
 
             comment.Content = request.Content;
             await commentRepository.UpdateAsync(comment);
-            return Results.NoContent();
+            return NoContent();
         }
         catch (Exception e)
         {
             Console.WriteLine(e);
-            throw;
+            return StatusCode(500, e.Message);
         }
     }
 
     [HttpGet("{id}")]
-    public async Task<IResult> GetSingleComment([FromRoute] int id)
+    public async Task<ActionResult<CommentDto>> GetSingleComment([FromRoute] int id)
     {
         try
         {
             Comment comment = await commentRepository.GetSingleAsync(id);
-            return Results.Ok(comment);
+            return Ok(comment);
         }
         catch (Exception e)
         {
             Console.WriteLine(e);
-            throw;
+            return StatusCode(500, e.Message);
         }
     }
 
     [HttpGet]
-    public async Task<IResult> GetManyComments()
+    public async Task<ActionResult<CommentDto>> GetManyComments()
     {
         try
         {
             IQueryable<Comment> comments = commentRepository.GetMany();
-            return Results.Ok();
+            return Ok();
         }
         catch (Exception e)
         {
             Console.WriteLine(e);
-            throw;
+            return StatusCode(500, e.Message);
         }
     }
 
     [HttpDelete("{id}")]
-    public async Task<IResult> DeleteComment([FromRoute] int id)
+    public async Task<ActionResult<CommentDto>> DeleteComment([FromRoute] int id)
     {
         try
         {
             await commentRepository.DeleteAsync(id);
-            return Results.NoContent();
+            return NoContent();
         }
         catch (Exception e)
         {
             Console.WriteLine(e);
-            throw;
+            return StatusCode(500, e.Message);
         }
     }
 }

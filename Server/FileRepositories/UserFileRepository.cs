@@ -20,7 +20,7 @@ public class UserFileRepository : IUserRepository
     {
         string usersAsJson = await File.ReadAllTextAsync(filePath);
         var users = JsonSerializer.Deserialize<List<User>>(usersAsJson);
-        int maxId = users.Count > 0 ? users.Max(u => u.Id) : 1;
+        int maxId = users.Count > 0 ? users.Max(u => u.Id) : 0;
         user.Id = maxId + 1;
         users.Add(user);
         usersAsJson = JsonSerializer.Serialize(users);
@@ -33,13 +33,9 @@ public class UserFileRepository : IUserRepository
         string usersAsJson = await File.ReadAllTextAsync(filePath);
         List<User>? users = JsonSerializer.Deserialize<List<User>>(usersAsJson);
         User? existingUser = users.SingleOrDefault(u => u.Id == user.Id);
-        if (existingUser is null)
-        {
-            throw new InvalidOperationException(
-                $"User with ID {user.Id} not found");
-        }
         users.Remove(existingUser);
         users.Add(user);
+        users = users.OrderBy(u => u.Id).ToList();
         usersAsJson = JsonSerializer.Serialize(users);
         await File.WriteAllTextAsync(filePath, usersAsJson);
     }
@@ -62,27 +58,17 @@ public class UserFileRepository : IUserRepository
     public async Task<User> GetSingleAsync(int id)
     {
         string usersAsJson = await File.ReadAllTextAsync(filePath);
-        List<User>? users = JsonSerializer.Deserialize<List<User>>(usersAsJson);
+        List<User>? users = JsonSerializer.Deserialize<List<User>>(usersAsJson) ?? new List<User>();
         User? singleUserGet = users.SingleOrDefault(u => u.Id == id);
-        if (singleUserGet is null)
-        {
-            throw new InvalidOperationException(
-                $"User with ID '{id}' not found"); 
-        }
-        return await Task.FromResult(singleUserGet);
+        return singleUserGet;
     }
 
-    public async Task<User> GetSingleAsync(string username)
+    public async Task<User?> GetSingleAsync(string username)
     {
         string usersAsJson = await File.ReadAllTextAsync(filePath);
         List<User>? users = JsonSerializer.Deserialize<List<User>>(usersAsJson);
         User? singleUserGet = users.SingleOrDefault(u => string.Equals(u.Username, username, StringComparison.OrdinalIgnoreCase)); //makes sure the username is not the same by ignoring the case
-        if (singleUserGet is null)
-        {
-            throw new InvalidOperationException(
-                $"User with username '{username}' not found"); 
-        }
-        return await Task.FromResult(singleUserGet);
+        return singleUserGet;
     }
     
     public IQueryable<User> GetMany()
