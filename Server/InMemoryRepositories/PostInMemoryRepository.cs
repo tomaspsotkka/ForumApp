@@ -1,4 +1,4 @@
-using Entities;
+/*using Entities;
 using RepositoryContracts;
 
 namespace InMemoryRepositories;
@@ -37,16 +37,15 @@ public class PostInMemoryRepository : IPostRepository
         return Task.CompletedTask;
     }
 
-    public Task DeleteAsync(int id)
+    public Task<bool> DeleteAsync(int id)
     {
         Post? postToRemove = posts.SingleOrDefault(p => p.Id == id);
         if (postToRemove is null)
         {
-            throw new InvalidOperationException(
-                $"Post with ID '{id}' not found");
+            return false;
         }
         posts.Remove(postToRemove);
-        return Task.CompletedTask;
+        return true;
     }
 
     public Task<Post> GetSingleAsync(int id)
@@ -59,9 +58,19 @@ public class PostInMemoryRepository : IPostRepository
         }
         return Task.FromResult(singlePostGet);
     }
+    public Task<Post> GetSingleAsync(string title)
+    {
+        Post? singlePostGet = posts.SingleOrDefault(p => p.Title == title);
+        if (singlePostGet is null)
+        {
+            throw new InvalidOperationException(
+                $"Post with title '{title}' not found"); 
+        }
+        return Task.FromResult(singlePostGet);
+    }
 
     public IQueryable<Post> GetMany()
     {
         return posts.AsQueryable();
     }
-}
+}*/

@@ -1,4 +1,4 @@
-using RepositoryContracts;
+/*using RepositoryContracts;
 
 namespace CLI.UI.ManagePosts;
 
@@ -55,11 +55,11 @@ public class ManagePostsView
             }
         }
     }
-    private async Task CreatePostAsync()
+    /*private async Task CreatePostAsync()
     {
         var createPostView = new CreatePostView(postRepository);
         await createPostView.ShowAsync();
-    }
+    }#1#
     
     private async Task ListPostsAsync()
     {
@@ -84,4 +84,4 @@ public class ManagePostsView
         var mainMenu = new CliApp(postRepository, userRepository, commentRepository);
         await mainMenu.StartAsync();
     }
-}
+}*/

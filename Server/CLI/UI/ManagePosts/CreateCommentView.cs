@@ -1,4 +1,4 @@
-using Entities;
+/*using Entities;
 using RepositoryContracts;
 
 namespace CLI.UI.ManagePosts;
@@ -35,4 +35,4 @@ public class CreateCommentView
         await commentRepository.AddAsync(newComment);
         Console.WriteLine("Comment added successfully.");
     }
-}
+}*/

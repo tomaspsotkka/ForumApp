@@ -1,4 +1,4 @@
-using Entities;
+/*using Entities;
 using RepositoryContracts;
 
 namespace CLI.UI.ManageUsers;
@@ -26,4 +26,4 @@ public class CreateUserView
         
         Console.WriteLine($"User with Id: {newUser.Id} has been created !");
     }
-}
+}*/

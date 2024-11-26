@@ -1,4 +1,4 @@
-using Entities;
+/*using Entities;
 using RepositoryContracts;
 
 namespace CLI.UI.ManagePosts;
@@ -8,6 +8,7 @@ public class CreatePostView
     private readonly IPostRepository postRepository;
     private readonly ICommentRepository commentRepository;
     private List<Comment> comments;
+    
 
     public CreatePostView(IPostRepository postRepository)
     {
@@ -15,7 +16,7 @@ public class CreatePostView
         comments = new List<Comment>();
     }
 
-    public async Task ShowAsync()
+    /*public async Task ShowAsync()
     {
         Console.WriteLine("Enter the title of the post:");
         string? title = Console.ReadLine();
@@ -29,5 +30,5 @@ public class CreatePostView
         await postRepository.AddAsync(newPost);
         
         Console.WriteLine($"Post with Id: {newPost.Id} has been created !");
-    }
-}
+    }#1#
+}*/

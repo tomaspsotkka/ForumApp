@@ -1,1 +1,27 @@
-[{"Id":1,"Username":"tomas","Password":"newPassword"},{"Id":2,"Username":"pato","Password":"nehehes"},{"Id":3,"Username":"mato","Password":"hahahaha"}]
+[
+  {
+    "Id": 1,
+    "Username": "tomas",
+    "Password": "newPassword"
+  },
+  {
+    "Id": 2,
+    "Username": "pato",
+    "Password": "nehehes"
+  },
+  {
+    "Id": 3,
+    "Username": "mato",
+    "Password": "hahahaha"
+  },
+  {
+    "Id": 4,
+    "Username": "kubo",
+    "Password": "gres123"
+  },
+  {
+    "Id": 6,
+    "Username": "jano",
+    "Password": "mrkva123"
+  }
+]

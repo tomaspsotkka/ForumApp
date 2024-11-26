@@ -12,8 +12,7 @@ public class PostFileRepository : IPostRepository
 
 
     public PostFileRepository()
-    {
-        if (!File.Exists(filePath))
+    {if (!File.Exists(filePath) || new FileInfo(filePath).Length == 0)
         {
             File.WriteAllText(filePath, "[]");
         }
@@ -21,8 +20,8 @@ public class PostFileRepository : IPostRepository
     public async Task<Post> AddAsync(Post post)
     {
         string postsAsJson = await File.ReadAllTextAsync(filePath);
-        posts = JsonSerializer.Deserialize<List<Post>>(postsAsJson);
-        int maxId = posts.Count > 0 ? posts.Max(p => p.Id) : 1;
+        var posts = JsonSerializer.Deserialize<List<Post>>(postsAsJson);
+        int maxId = posts.Count > 0 ? posts.Max(p => p.Id) : 0;
         post.Id = maxId + 1;
         posts.Add(post);
         postsAsJson = JsonSerializer.Serialize(posts);
@@ -35,30 +34,25 @@ public class PostFileRepository : IPostRepository
         string postsAsJson = await File.ReadAllTextAsync(filePath);
         List<Post>? posts = JsonSerializer.Deserialize<List<Post>>(postsAsJson);
         Post? existingPost = posts.SingleOrDefault(p => p.Id == post.Id);
-        if (existingPost is null)
-        {
-            throw new InvalidOperationException(
-                $"Post with ID {post.Id} not found");
-        }
         posts.Remove(existingPost);
         posts.Add(post);
         postsAsJson = JsonSerializer.Serialize(posts);
         await File.WriteAllTextAsync(filePath, postsAsJson);
     }
 
-    public async Task DeleteAsync(int id)
+    public async Task<bool> DeleteAsync(int id)
     {
         string postsAsJson = await File.ReadAllTextAsync(filePath);
         List<Post>? posts = JsonSerializer.Deserialize<List<Post>>(postsAsJson);
         Post? existingPost = posts.SingleOrDefault(p => p.Id == id);
         if (existingPost is null)
         {
-            throw new InvalidOperationException(
-                $"Post with ID '{id}' not found");
+            return false;
         }
         posts.Remove(existingPost);
         postsAsJson = JsonSerializer.Serialize(posts);
         await File.WriteAllTextAsync(filePath, postsAsJson);
+        return true;
     }
 
     public async Task<Post> GetSingleAsync(int id)
@@ -66,11 +60,14 @@ public class PostFileRepository : IPostRepository
         string postsAsJson = await File.ReadAllTextAsync(filePath);
         List<Post>? posts = JsonSerializer.Deserialize<List<Post>>(postsAsJson);
         Post? singlePostGet = posts.SingleOrDefault(p => p.Id == id);
-        if (singlePostGet is null)
-        {
-            throw new InvalidOperationException(
-                $"Post with ID '{id}' not found"); 
-        }
+        return await Task.FromResult(singlePostGet);
+    }
+    
+    public async Task<Post> GetSingleAsync(string title)
+    {
+        string postsAsJson = await File.ReadAllTextAsync(filePath);
+        List<Post>? posts = JsonSerializer.Deserialize<List<Post>>(postsAsJson);
+        Post? singlePostGet = posts.SingleOrDefault(p => string.Equals(p.Title, title, StringComparison.OrdinalIgnoreCase));
         return await Task.FromResult(singlePostGet);
     }
 

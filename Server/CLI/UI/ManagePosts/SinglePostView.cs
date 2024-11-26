@@ -1,4 +1,4 @@
-using Entities;
+/*using Entities;
 using RepositoryContracts;
 
 namespace CLI.UI.ManagePosts;
@@ -117,4 +117,4 @@ public class SinglePostView
         var managePostsView = new ManagePostsView(postRepository, userRepository, commentRepository);
         await managePostsView.ShowAsync();
     }
-}
+}*/

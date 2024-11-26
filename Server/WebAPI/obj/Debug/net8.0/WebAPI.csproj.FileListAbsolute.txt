@@ -41,3 +41,4 @@ C:\Users\psotk\RiderProjects\ForumApp\Server\WebAPI\obj\Debug\net8.0\WebAPI.genr
 C:\Users\psotk\RiderProjects\ForumApp\Server\WebAPI\obj\Debug\net8.0\ref\WebAPI.dll
 C:\Users\psotk\RiderProjects\ForumApp\Server\WebAPI\bin\Debug\net8.0\posts.json
 C:\Users\psotk\RiderProjects\ForumApp\Server\WebAPI\bin\Debug\net8.0\users.json
+C:\Users\psotk\RiderProjects\ForumApp\Server\WebAPI\bin\Debug\net8.0\comments.json

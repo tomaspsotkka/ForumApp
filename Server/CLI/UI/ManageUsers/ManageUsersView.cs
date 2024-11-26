@@ -1,4 +1,4 @@
-using CLI.UI.ManagePosts;
+/*using CLI.UI.ManagePosts;
 using RepositoryContracts;
 
 namespace CLI.UI.ManageUsers;
@@ -84,4 +84,4 @@ public class ManageUsersView
         var mainMenu = new CliApp(postRepository, userRepository, commentRepository);
         await mainMenu.StartAsync();
     }
-}
+}*/

@@ -1,4 +1,4 @@
-using RepositoryContracts;
+/*using RepositoryContracts;
 
 namespace CLI.UI.ManagePosts;
 
@@ -25,4 +25,4 @@ public class UpdateCommentView
         await commentRepository.UpdateAsync(comment);
         Console.WriteLine("Comment updated.");
     }
-}
+}*/

@@ -1,4 +1,4 @@
-using RepositoryContracts;
+/*using RepositoryContracts;
 
 namespace CLI.UI.ManagePosts;
 
@@ -21,4 +21,4 @@ public class DeleteCommentView
         await commentRepository.DeleteAsync(commentId);
         Console.WriteLine($"Comment with id {commentId} was deleted.");
     }
-}
+}*/

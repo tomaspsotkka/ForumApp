@@ -1,4 +1,4 @@
-using RepositoryContracts;
+/*using RepositoryContracts;
 
 namespace CLI.UI.ManagePosts;
 
@@ -24,4 +24,4 @@ public class UpdatePostView
         await postRepository.UpdateAsync(post);
         Console.WriteLine("Post updated.");
     }
-}
+}*/

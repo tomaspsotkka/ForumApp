@@ -1,4 +1,4 @@
-using Entities;
+/*using Entities;
 using RepositoryContracts;
 
 namespace CLI.UI.ManagePosts;
@@ -23,4 +23,4 @@ public class DeletePostView
         await postRepository.DeleteAsync(postId);
         Console.WriteLine($"Post with id {postId} was deleted.");
     }
-}
+}*/

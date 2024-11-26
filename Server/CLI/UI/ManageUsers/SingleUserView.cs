@@ -1,4 +1,4 @@
-using Entities;
+/*using Entities;
 using RepositoryContracts;
 
 namespace CLI.UI.ManageUsers;
@@ -23,4 +23,4 @@ public class SingleUserView
         var user = await userRepository.GetSingleAsync(id);
         Console.WriteLine($"{user.Id}. {user.Username} \n");
     }
-}
+}*/

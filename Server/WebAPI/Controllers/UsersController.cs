@@ -1,7 +1,6 @@
 using DTOs;
 using Entities;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Razor;
 using RepositoryContracts;
 
 namespace WebAPI.Controllers;
@@ -18,20 +17,19 @@ public class UsersController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<UserDto>> CreateUser([FromBody] UserDto request)
+    public async Task<ActionResult<CreateUserDto>> CreateUser([FromBody] CreateUserDto request)
     {
         try
         {
             await VerifyUsernameIsAvailableAsync(request.Username);
             User user = new(request.Username, request.Password);
             User created = await userRepository.AddAsync(user);
-            UserDto dto = new()
+            CreateUserDto dto = new()
             {
-                Id = created.Id,
                 Username = created.Username,
                 Password = created.Password
             };
-            return Created($"/Users/{dto.Id}", dto);
+            return Created($"/Users/", dto);
         }
         catch (Exception e)
         {
@@ -41,7 +39,7 @@ public class UsersController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public async Task<ActionResult<UserDto>> UpdateUser([FromRoute] int id, [FromBody] UserDto request)
+    public async Task<ActionResult<UpdateUserDto>> UpdateUser([FromRoute] int id, [FromBody] UpdateUserDto request)
     {
         try
         {
@@ -50,7 +48,10 @@ public class UsersController : ControllerBase
             {
                 return NotFound($"User with id {id} not found.");
             }
-
+            if (!string.Equals(user.Username, request.Username, StringComparison.OrdinalIgnoreCase))
+            {
+                await VerifyUsernameIsAvailableAsync(request.Username);
+            }
             user.Username = request.Username;
             user.Password = request.Password;
             await userRepository.UpdateAsync(user);
@@ -119,6 +120,10 @@ public class UsersController : ControllerBase
         try
         {
             IQueryable<User> users = userRepository.GetMany();
+            if (users is null)
+            {
+                return NotFound("No users found");
+            }
             return Ok(users);
         }
         catch (Exception e)
@@ -133,8 +138,13 @@ public class UsersController : ControllerBase
     {
         try
         {
-            await userRepository.DeleteAsync(id);
-            return NoContent();
+            bool deleted = await userRepository.DeleteAsync(id);
+            if (deleted is false)
+            {
+                return NotFound($"User with ID '{id}' not found");
+            }
+            
+            return Ok($"User with ID {id} successfully deleted."); //succesfully deleted (hopefully)
         }
         catch (Exception e)
         {

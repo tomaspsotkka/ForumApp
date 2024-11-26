@@ -17,19 +17,19 @@ public class CommentsController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<CommentDto>> CreateComment([FromBody] CommentDto request)
+    public async Task<ActionResult<CreateCommentDto>> CreateComment([FromBody] CreateCommentDto request)
     {
         try
         {
-            Comment comment = new Comment()
+            Comment comment = new (request.UserId, request.Content, request.PostId);
+            Comment created = await commentRepository.AddAsync(comment);
+            CreateCommentDto dto = new()
             {
-                Content = request.Content,
-                PostId = request.PostId,
-                UserId = request.UserId
+                Content = created.Content,
+                PostId = created.PostId,
+                UserId = created.UserId
             };
-            Console.WriteLine("Comment created!");
-            await commentRepository.AddAsync(comment);
-            return Created($"comments/{comment.Id}", comment);
+            return Created($"/Comments/", dto);
         }
         catch (Exception e)
         {
@@ -39,19 +39,18 @@ public class CommentsController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public async Task<ActionResult<CommentDto>> UpdateComment([FromRoute] int id, [FromBody] CommentDto request)
+    public async Task<ActionResult<UpdateCommentDto>> UpdateComment([FromRoute] int id, [FromBody] UpdateCommentDto request)
     {
         try
         {
             Comment comment = await commentRepository.GetSingleAsync(id);
             if (comment == null)
             {
-                return NotFound();
+                return NotFound($"Comment with ID {comment.Id} not found");
             }
-
             comment.Content = request.Content;
             await commentRepository.UpdateAsync(comment);
-            return NoContent();
+            return Ok();
         }
         catch (Exception e)
         {
@@ -65,7 +64,17 @@ public class CommentsController : ControllerBase
     {
         try
         {
-            Comment comment = await commentRepository.GetSingleAsync(id);
+            Comment? comment = await commentRepository.GetSingleAsync(id);
+            if (comment == null)
+            {
+                return NotFound($"Comment with ID {comment.Id} not found");
+            }
+            CommentDto dto = new CommentDto()
+            {
+                Content = comment.Content,
+                PostId = comment.PostId,
+                UserId = comment.UserId
+            };
             return Ok(comment);
         }
         catch (Exception e)
@@ -75,13 +84,17 @@ public class CommentsController : ControllerBase
         }
     }
 
-    [HttpGet]
+    [HttpGet("all")]
     public async Task<ActionResult<CommentDto>> GetManyComments()
     {
         try
         {
             IQueryable<Comment> comments = commentRepository.GetMany();
-            return Ok();
+            if (comments == null)
+            {
+                return NotFound("No comments found");
+            }
+            return Ok(comments);
         }
         catch (Exception e)
         {
@@ -91,12 +104,16 @@ public class CommentsController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    public async Task<ActionResult<CommentDto>> DeleteComment([FromRoute] int id)
+    public async Task<ActionResult<CommentDto>> DeleteComment([FromRoute] int id, int postId)
     {
         try
         {
-            await commentRepository.DeleteAsync(id);
-            return NoContent();
+            bool deleted = await commentRepository.DeleteAsync(id, postId);
+            if (deleted is false)
+            {
+                return NotFound($"Comment with ID {id} not found");
+            }
+            return Ok($"Comment with ID {id} deleted");
         }
         catch (Exception e)
         {

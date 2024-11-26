@@ -1,4 +1,4 @@
-using Entities;
+/*using Entities;
 using RepositoryContracts;
 
 namespace CLI.UI.ManageUsers;
@@ -30,4 +30,4 @@ public class ListUsersView
         }
         Console.WriteLine("");
     }
-}
+}*/

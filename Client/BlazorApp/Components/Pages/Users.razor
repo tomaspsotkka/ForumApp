@@ -1,0 +1,57 @@
+@page "/users"
+@using BlazorApp.Services
+@using DTOs
+@inject IUserService UserService
+
+<PageTitle>Users</PageTitle>
+
+<h1>Users</h1>
+
+<EditForm Model="newUser" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    
+    <div class="form-group">
+        <label for="username">Username</label>
+        <InputText id="username" class="form-control" @bind-Value="newUser.Username" />
+    </div>
+    <br/>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <InputText id="password" class="form-control" @bind-Value="newUser.Password" />
+    </div>
+    <br/>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</EditForm>
+
+@code{
+
+    private CreateUserDto newUser = new CreateUserDto
+    {
+        Username = string.Empty,
+        Password = string.Empty
+    };
+
+    private async Task HandleValidSubmit()
+    {
+        try
+        {
+            await UserService.AddUserAsync(newUser);
+            newUser = new CreateUserDto
+            {
+                Username = string.Empty,
+                Password = string.Empty
+            };
+
+
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+
+
+}
+

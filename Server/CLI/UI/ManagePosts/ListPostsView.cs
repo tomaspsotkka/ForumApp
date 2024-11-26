@@ -1,4 +1,4 @@
-using Entities;
+/*using Entities;
 using RepositoryContracts;
 
 namespace CLI.UI.ManagePosts;
@@ -30,4 +30,4 @@ public class ListPostsView
             Console.WriteLine($"Content: {post.Body} \n");
         }
     }
-}
+}*/

@@ -84,9 +84,6 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\psotk\\RiderProjects\\ForumApp\\Server\\Entities\\Entities.csproj": {
-                "projectPath": "C:\\Users\\psotk\\RiderProjects\\ForumApp\\Server\\Entities\\Entities.csproj"
-              },
               "C:\\Users\\psotk\\RiderProjects\\ForumApp\\Server\\RepositoryContracts\\RepositoryContracts.csproj": {
                 "projectPath": "C:\\Users\\psotk\\RiderProjects\\ForumApp\\Server\\RepositoryContracts\\RepositoryContracts.csproj"
               }

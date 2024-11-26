@@ -1,4 +1,4 @@
-using RepositoryContracts;
+/*using RepositoryContracts;
 
 namespace CLI.UI.ManageUsers;
 
@@ -22,4 +22,4 @@ public class DeleteUserView
         await userRepository.DeleteAsync(userId);
         Console.WriteLine($"Post with id {userId} was deleted.");
     }
-}
+}*/

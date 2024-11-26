@@ -1,4 +1,4 @@
-using Entities;
+/*using Entities;
 using RepositoryContracts;
 
 namespace InMemoryRepositories;
@@ -56,4 +56,4 @@ public class CommentInMemoryRepository : ICommentRepository
     {
         return comments.AsQueryable();
     }
-}
+}*/

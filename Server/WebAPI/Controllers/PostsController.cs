@@ -10,11 +10,14 @@ namespace WebAPI.Controllers;
 public class PostsController : ControllerBase
 {
     private readonly IPostRepository postRepository;
+    private readonly IUserRepository userRepository;
 
-    public PostsController(IPostRepository postRepository)
+    public PostsController(IPostRepository postRepository, IUserRepository userRepository)
     {
         this.postRepository = postRepository;
+        this.userRepository = userRepository;
     }
+    
     
     [HttpGet("test-exception")]
     public ActionResult TestException()
@@ -23,14 +26,20 @@ public class PostsController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<PostDto>> CreatePost([FromBody] PostDto request)
+    public async Task<ActionResult<CreatePostDto>> CreatePost([FromBody] CreatePostDto request)
     {
         try
         {
             Post post = new(request.Title, request.Body, request.UserId);
             Console.WriteLine("Post created!");
-            await postRepository.AddAsync(post);
-            return Created($"posts/{post.Id}", post);
+            Post created = await postRepository.AddAsync(post);
+            CreatePostDto dto = new()
+            {
+                Title = created.Title,
+                Body = created.Body,
+                UserId = created.UserId
+            };
+            return Created($"/Posts/", dto);
         }
         catch (Exception e)
         {
@@ -40,21 +49,21 @@ public class PostsController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public async Task<ActionResult<PostDto>> UpdatePost([FromRoute] int id, [FromBody] PostDto request)
+    public async Task<ActionResult<PostDto>>? UpdatePost([FromRoute] int id, [FromBody] PostDto request)
     {
         try
         {
             Post post = await postRepository.GetSingleAsync(id);
             if (post == null)
             {
-                return NotFound();
+                return NotFound($"Post with ID {post.Id} not found");
             }
 
             post.Title = request.Title;
             post.Body = request.Body;
 
             await postRepository.UpdateAsync(post);
-            return NoContent();
+            return Ok($"Post with ID {post.Id} successfully updated.");
         }
         catch (Exception e)
         {
@@ -63,12 +72,17 @@ public class PostsController : ControllerBase
         }
     }
     
-    [HttpGet("{id}")]
+    [HttpGet("by-id/{id}")]
     public async Task<ActionResult<PostDto>> GetSinglePost([FromRoute] int id)
     {
         try
         {
             Post post = await postRepository.GetSingleAsync(id);
+            if (post is null)
+            {
+                return NotFound($"Post with ID '{id}' not found");
+
+            }
             return Ok(post);
         }
         catch (Exception e)
@@ -78,7 +92,27 @@ public class PostsController : ControllerBase
         }
     }
     
-    [HttpGet]
+    [HttpGet("by-title/{title}")]
+    public async Task<ActionResult<PostDto>> GetSinglePost([FromRoute] string title)
+    {
+        try
+        {
+            Post post = await postRepository.GetSingleAsync(title);
+            if (post is null)
+            {
+                throw new InvalidOperationException(
+                    $"Post with Title '{title}' not found"); 
+            }
+            return Ok(post);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return StatusCode(500, e.Message);
+        }
+    }
+    
+    [HttpGet("all")]
     public async Task<ActionResult<PostDto>> GetManyPosts()
     {
         try
@@ -98,8 +132,12 @@ public class PostsController : ControllerBase
     {
         try
         {
-            await postRepository.DeleteAsync(id);
-            return NoContent();
+            bool deleted = await postRepository.DeleteAsync(id);
+            if (deleted is false)
+            {
+                return NotFound($"Post with ID '{id}' not found");
+            }
+            return Ok($"Post with ID {id} successfully deleted."); //succesfully deleted (hopefully)
         }
         catch (Exception e)
         {

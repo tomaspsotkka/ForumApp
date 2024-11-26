@@ -40,25 +40,25 @@ public class UserFileRepository : IUserRepository
         await File.WriteAllTextAsync(filePath, usersAsJson);
     }
 
-    public async Task DeleteAsync(int id)
+    public async Task<bool> DeleteAsync(int id)
     {
         string usersAsJson = await File.ReadAllTextAsync(filePath);
         List<User>? users = JsonSerializer.Deserialize<List<User>>(usersAsJson);
         User? existingUser = users.SingleOrDefault(u => u.Id == id);
         if (existingUser is null)
         {
-            throw new InvalidOperationException(
-                $"User with ID '{id}' not found");
+            return false;
         }
         users.Remove(existingUser);
         usersAsJson = JsonSerializer.Serialize(users);
         await File.WriteAllTextAsync(filePath, usersAsJson);
+        return true;
     }
 
-    public async Task<User> GetSingleAsync(int id)
+    public async Task<User?> GetSingleAsync(int id)
     {
         string usersAsJson = await File.ReadAllTextAsync(filePath);
-        List<User>? users = JsonSerializer.Deserialize<List<User>>(usersAsJson) ?? new List<User>();
+        List<User>? users = JsonSerializer.Deserialize<List<User>>(usersAsJson);
         User? singleUserGet = users.SingleOrDefault(u => u.Id == id);
         return singleUserGet;
     }
